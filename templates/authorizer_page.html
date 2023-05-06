@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block authorize_content %}
+<h2>Hi {{name}} you are accessed</h2><br>
+<form action="/authorizer_login_check" method="POST">
+    <ul>
+    <p><a href="/add_venue_list" >add venue list form</p><br>
+    <p><a href="/edit_venue_list" >edit venue list form</p><br>
+    <p><a href="/authorizer_logout" >logout</p><br>
+    </ul>
+</form>
+
+
+{% endblock %}

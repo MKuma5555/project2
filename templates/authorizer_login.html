@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block authorize_content %}
+
+<form action="/authorizer_login_check" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name">
+
+    <label for="password">password</label>
+    <input type="password" name="password">
+
+    <input type="submit">
+
+    
+</form>
+
+<a href="/home">back to home</a>
+{% endblock %}

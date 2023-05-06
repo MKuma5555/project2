@@ -1,0 +1,19 @@
+.main_div{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.category{
+    display: block;
+    width: 450px;
+    height: 800px;
+    margin:10px ;
+
+    background-color: rgb(229, 175, 156);
+    text-align: center;
+}
+
+img{
+    width: 400px;
+    height:300px;
+}

@@ -1,0 +1,128 @@
+html{
+  max-width: 1000%;
+  min-width: 100%;
+}
+.img{
+    width: 300px;
+    height: 200px;
+}
+body{
+    background-color: whitesmoke;
+}
+
+header p{
+  text-align: end;
+}
+header a{
+  color: aliceblue;
+}
+
+.big_div{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-evenly;
+    /* background-image: url(https://cdn.shopify.com/s/files/1/0056/0175/5249/files/Header_WeddingFlowers_2000x900_50239f37-4653-432f-a1f3-1d2234c04369.jpg?v=1551916726); */
+}
+
+.category{
+    align-content: space-between;
+    position: relative;
+    text-align: center;
+    border-style: solid;
+    border-color: rgb(210, 172, 246);
+    margin: 5px;
+}
+
+.category_name{
+    
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    transform: translate(-60%, -40%); 
+    text-align: center;  
+    font-size: 2em;
+    color: rgb(226, 142, 226);
+    width: 150px;
+    height: 30px;
+    background-color:rgba(255,255,255,0.8);  
+}
+
+.category_name:hover{
+    background-color: rgba(152, 132, 111, 0.8);
+}
+
+header{
+    text-align: center;
+    color: #fff;
+    background: #988ea4;
+    
+}
+
+
+
+
+
+/* here copy */
+.footer {
+    position: relative;
+    /* width: 100%; */
+    background: #988ea4;
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .social_icon,
+  .menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  
+  .icon__item,
+  .menu__item {
+    list-style: none;
+  }
+  
+  .icon__link {
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+  }
+  .icon__link:hover {
+    transform: translateY(-10px);
+  }
+  
+  .menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+  }
+  
+  .menu__link:hover {
+    opacity: 1;
+  }
+  
+  .footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  
+  
+  

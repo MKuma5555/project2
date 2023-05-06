@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block img_content %}
+<link rel="stylesheet" href="../static/css/list_page.css">
+
+{% endblock %}
+
+{% block venue_list_content %}
+<header>
+    <h1>{{category_name}} Venue list</h1><br>
+    <a href="/home">main page</a>
+</header>
+
+
+
+<div class="main_div">
+{% for e in list %}
+<div class="category" name="{{e[1]}}">
+    <div class="card_image">
+        <img src='{{e[2]}}' class="img">
+        <button class="carousel_control_prev" type="button" data_base_target="#card_gallery" data_bs_slide="prev">
+            <span class="carousel_control_pre_icon" aria-hidden="true"></span>
+            <span class="visually_hidden">Previous</span>
+        </button>
+        <button class="carousel_control_next" type="button" data_base_target="#card_gallery" data_bs_slide="next">
+            <span class="carousel_control_next_icon" aria-hidden="true"></span>
+            <span class="visually_hidden">Next</span>
+        </button>
+    </div>
+    <div class="card_bpdy">
+        <span class="card_name">
+        <h2 class="venue_name"><a href="/{{e[1]}}"> {{e[1]}}</a> </h2>
+        </span>
+        <span class="card_adress">{{e[3]}} </span>
+        <span class="card_like_button">
+            <button class="like" aria-label="Save">
+                <i class="love_hart">like</i>
+            </button>
+        </span>
+        
+        <p class="card_text">
+            {{e[4]}}
+        </p>
+    </div>
+    <div class="card_footer">
+        <p>${{e[5]}} avg price</p>
+        <p>{{e[6]}} avg ppl</p>
+        <div class="card_enquiry"><a href="https//">Request Enquiry</a> </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

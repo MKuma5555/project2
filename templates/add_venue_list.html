@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block authorize_content %}
+
+<form action="" method="POST">
+    <label for="category">Choose Category</label>
+    <input type="text" name="category_name">
+    <datalist id="venue_category">
+        <option value="Internet Explorer">
+        <option value="Firefox">
+        <option value="Google Chrome">
+        <option value="Opera">
+        <option value="Safari">
+    </datalist>
+    
+<p>Add new venue</p> 
+<ul>
+    <li>
+        <label for="venue_name">Venue name:</label>
+        <input type="text" name="venue_name">
+      
+    <li>
+        <label for="venue_img">Image URL:</label>
+        <input type="text" name="venue_img">
+    <li>
+        <label for="location">Location:</label>
+        <input type="text" name="location">
+    <li>
+        <label for="overview">overview:</label>
+        <input type="text" name="overview">
+    <li>
+        <label for="avg_price">Average price:</label>
+        <input type="number" name="avg_price">
+    <li>
+        <label for="avg_guest">Average guest:</label>
+        <input type="number" name="avg_guest">
+    </li>
+    <input type="submit">
+    
+    </ul>
+
+    
+</form>
+
+<a href="/home">back to home</a>
+{% endblock %}
