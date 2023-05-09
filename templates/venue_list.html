@@ -46,10 +46,11 @@
 <!-- pop login div box -->
 
                 <button class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="{{e[1]}}">♡</button>
+                {% if not session["user_id"] %}
                 <div id="id01" class="modal">
 
                 <div class="like_clicked">
-                    <form class="modal-content" action="like_clicked" method="post">
+                    <form class="modal-content" action="/login" method="post">
                         <div class="imgcontainer">
                           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"> &times;</span>
                           <img src="https://img.freepik.com/premium-vector/vector-isolated-bride-groom-drawing-one-continuous-line-sketch_566661-3743.jpg" alt="Avatar" class="avatar">
@@ -78,7 +79,7 @@
                       </form>
                     </div>
                     </div>
-            
+            {% endif %}
         </span>
         
         <p class="card_text">
