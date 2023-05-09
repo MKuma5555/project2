@@ -46,26 +46,26 @@ def city_page():
         city_list.append(each)
     return render_template("venue_list.html",list=city_list,category_name=category_name)
 
-# @app.route('/Waterfront')
-# def each_list():
-#     each_venue_list=short.each_list('waterfront_list_table')
-#     category_name='Waterfront'
-#     waterfront_list=[]
-#     for each in each_venue_list:
-#         waterfront_list.append(each)
-#     return render_template("venue_list.html",list=waterfront_list,category_name=category_name)
+@app.route('/Waterfront')
+def waterfront_page():
+    each_venue_list=short.each_list('waterfront_list_table')
+    category_name='Waterfront'
+    waterfront_list=[]
+    for each in each_venue_list:
+        waterfront_list.append(each)
+    return render_template("venue_list.html",list=waterfront_list,category_name=category_name)
 
-# @app.route('/Historic')
-# def each_list():
-#     each_venue_list=short.each_list('historic_list_table')
-#     category_name='Historic'
-#     historic_list=[]
-#     for each in each_venue_list:
-#         historic_list.append(each)
-#     return render_template("venue_list.html",list=historic_list,category_name=category_name)
+@app.route('/Historic')
+def historic_list():
+    each_venue_list=short.each_list('historic_list_table')
+    category_name='Historic'
+    historic_list=[]
+    for each in each_venue_list:
+        historic_list.append(each)
+    return render_template("venue_list.html",list=historic_list,category_name=category_name)
 
 @app.route('/Unique')
-def each_list():
+def unique_list():
     each_venue_list=short.each_list('unique_list_table')
     category_name='Unique'
     unique_list=[]
@@ -233,25 +233,6 @@ def user_login_form():
     return render_template('user_login.html')
 
 
-# @app.route('/login/valid', methods=["POST"])
-# def login_action():
-#     email=request.form.get('email')
-#     plain_text_password=request.form.get('password')
-#     #name=request.form.get('name')
-#     curr_user=user.Users(email=email,plain_password=plain_text_password)
-#     user_info=curr_user.get_user_if_valid()
-
-#     if user_info:
-#         session["user_id"]=user_info['id']
-#         session['user_name']=user_info['name']
-#         return f"success login{user_info['id']}"
-#     #return redirect('/home')
-#     else:
-#         # return render_template('/login_error.html')
-#         return "wrong"
-
-
-
 @app.route('/login/valid', methods=["POST"])
 def login_action():
     email = request.form.get('user_email')
@@ -263,10 +244,14 @@ def login_action():
     if user_info:
         session["user_id"] = user_info['id']
         session['user_name'] = user_info['name']
-        return f"success login {user_info['id']}"
+        
+        return redirect ('/user_page')
     else:
         return f"Wrong email or password . You input email :{email}, password:{plain_text_password}"
 
+@app.route('/user_page')
+def goto_user_page():
+    return render_template('user_page.html')
 
 
 
@@ -274,26 +259,28 @@ def login_action():
 def form_sign_up():
     return render_template('sign_up_form.html')
 
+
+
 @app.route('/sign_up',methods=["POST"])
 def create_user(): 
-    name=request.form.get('user_name'),
-    email=request.form.get('user_email'),
-    date=request.form.get('wedding_date'),
-    guests=request.form.get('user_guest'),
-    budget=request.form.get('user_budget'),
-    password=request.form.get('user_password'),
+    name=request.form.get('user_name')
+    email=request.form.get('user_email')
+    date=request.form.get('wedding_date')
+    guests=request.form.get('user_guest')
+    budget=request.form.get('user_budget')
+    password=request.form.get('user_password')
 
     
-    hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     isValidPassword = bcrypt.checkpw(password.encode(), hashed_password.encode())
-    return f"{hashed_password}"
-    # common.sql_write("INSERT INTO users (email,name,weddingDate,guestNum,budget,password_hash)VALUES(%s,%s,%s,%s,%s,%s);",[email,name,date,guests,budget,hashed_password])
-    # results=common.sql_read("SELECT * FROM users WHERE email=%s;",[email])
+    #return f"{isValidPassword}"
+    common.sql_write("INSERT INTO users (email,name,weddingDate,guestNum,budget,password_hash)VALUES(%s,%s,%s,%s,%s,%s);",[email,name,date,guests,budget,hashed_password])
+    results=common.sql_read("SELECT * FROM users WHERE email=%s;",[email])
     
-    # return  f"""
-    # <p> Hi {results[3]}. Welcome to Food truck !! Your email :{results[1]} Your password{results[6]}</p><br>
-    # <p>enjoy food truck<a href="/menu">menu</a></p>
-    #  <p>Is this valid password? {isValidPassword}</p> """
+    return  f"""
+    <p> Hi {results[0][2]}. Your email :{results[0][1]} Your password:{results[0][6]}</p><br>
+    <p>enjoy food truck<a href="/home">menu</a></p>
+     <p>Is this valid password? {isValidPassword}</p> """
 
 
 app.run(debug=True)

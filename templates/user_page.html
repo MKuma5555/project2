@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block img_content %}
+ <!-- <link rel="stylesheet" href="../static/css/sign_up.css">  -->
+
+{% endblock %}
+
+
+{% block user_content %}
+
+<p>Hi {{users['name']}} welcome back</p>
+<p>success</p>
+
+<div class="saved_venue">
+<h2>Your favorite venue list</h2>
+<ul>
+    <li>###liked list</li>
+</ul>
+</div>
+<div class="match_by_guestNum">
+    <h2>Match by your number of guest</h2>
+    <ul>
+        <li>###list macth guest number</li>
+    </ul>
+</div>
+
+<div class="match_by_budget">
+    <h2>Match by your budget</h2>
+    <ul>
+        <li>###match by budget</li>
+    </ul>
+</div>
+{% endblock %}
