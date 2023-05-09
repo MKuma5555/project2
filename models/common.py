@@ -27,4 +27,11 @@ def sql_write(query,parameters=[]):
     cursor.execute(query,parameters)
     connection.commit()
     connection.close()
-    
+
+
+def simple(query):
+    connection=psycopg2.connect(dbname="venue",user="postgres" ,host="127.0.0.1" ,password=db_password)
+    cursor=connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+    connection.close()

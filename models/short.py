@@ -38,3 +38,6 @@ def authorizer_login(filter_clause,para):
         authorizer=results[0]
         return {"id":authorizer[0], "name":authorizer[1],"password":authorizer[2]}
     return None
+
+
+

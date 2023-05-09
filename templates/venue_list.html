@@ -8,7 +8,10 @@
 {% block venue_list_content %}
 <header>
     <h1>{{category_name}} Venue list</h1><br>
-    <a href="/home">main page</a>
+    <div class="a_link">
+    <p class="back_to_home"><a href="/home">Home</a></p>
+    <p class="go_to_login_page"><a href="/login">Log in</a></p>
+    </div>
 </header>
 
 
@@ -20,22 +23,61 @@
         <img src='{{e[2]}}' class="img">
         <button class="carousel_control_prev" type="button" data_base_target="#card_gallery" data_bs_slide="prev">
             <span class="carousel_control_pre_icon" aria-hidden="true"></span>
-            <span class="visually_hidden">Previous</span>
+            <span class="visually_hidden">Back◄</span>
         </button>
         <button class="carousel_control_next" type="button" data_base_target="#card_gallery" data_bs_slide="next">
             <span class="carousel_control_next_icon" aria-hidden="true"></span>
-            <span class="visually_hidden">Next</span>
+            <span class="visually_hidden">►Next</span>
         </button>
     </div>
     <div class="card_bpdy">
         <span class="card_name">
         <h2 class="venue_name"><a href="/{{e[1]}}"> {{e[1]}}</a> </h2>
         </span>
-        <span class="card_adress">{{e[3]}} </span>
+        <span class="card_address">📍{{e[3]}} </span>
         <span class="card_like_button">
-            <button class="like" aria-label="Save">
-                <i class="love_hart">like</i>
-            </button>
+            <!-- <button class="like" formaction="/like_clicked" aria-label="Save"> -->
+                <!-- <label><a class="login_like" href="/like_clicked">♡</a></label></button> -->
+                <button class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="{{e[1]}}">♡</button>
+                
+<!-- pop login div box -->
+<!-- pop login div box -->
+<!-- pop login div box -->
+
+
+                <div id="id01" class="modal">
+
+                <div class="like_clicked">
+                    <form class="modal-content" action="like_clicked" method="post">
+                        <div class="imgcontainer">
+                          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"> &times;</span>
+                          <img src="https://img.freepik.com/premium-vector/vector-isolated-bride-groom-drawing-one-continuous-line-sketch_566661-3743.jpg" alt="Avatar" class="avatar">
+                        </div>
+                      
+                    
+                    
+                        <div class="input_container">
+                          <label for="user_email"><b>User Email</b></label>
+                          <input type="email" placeholder="Enter User email" name="user_email" required>
+                          <!-- required=pecifies that an input field must be filled out before submitting the form -->
+                    
+                          <label for="user_password"><b>Password</b></label>
+                          <input type="password" placeholder="Enter Password" name="user_password" required>
+                            
+                          <button class='like_login_btn' type="submit">Login</button>
+                          <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                          </label>
+                        </div>
+                    
+                        <div class="container" style="background-color:#f1f1f1">.    
+                          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                          <span class="forgot_pwd">Forgot <a href="#">password?</a></span>
+                        </div>
+                      </form>
+                    </div>
+                    </div>
+            
         </span>
         
         <p class="card_text">
@@ -45,12 +87,27 @@
     <div class="card_footer">
         <p>${{e[5]}} avg price</p>
         <p>{{e[6]}} avg ppl</p>
-        <div class="card_enquiry"><a href="https//">Request Enquiry</a> </div>
+        <div class="card_enquiry"><a href="/login">Request Enquiry</a> </div>
     </div>
 </div>
 {% endfor %}
-</div>
 
 
+
+
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 {% endblock %}

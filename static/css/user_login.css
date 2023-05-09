@@ -1,93 +1,7 @@
-.main_div{
-    display:flex;
-    flex-wrap: wrap;
-}
-
-.category{
-    display: block;
-    width: 450px;
-    height: 800px;
-    margin:10px ;
-
-    background-color: rgb(249, 249, 249);
-    text-align: center;
-}
-
-img{
-    
-    width: 400px;
-    height:300px;
-}
-
-.card_img{
-    position: relative;
-}
-/* like button shape */
-.card_like_button{
-    font-size: 40px;
-     
-}
-
-
-
-.venue_name a{
-    color: rgb(83, 65, 48);
-}
-.card_address{
-    color: rgb(83, 65, 48);
-    font-size: large;
-}
-
-/* header part */
-html{
-  background-color: rgb(203, 193, 206);
-}
-header {
-  display: block;
-  
-  
-}
-header h1{
-  text-align: center;
-  gap: 2ex;
-  color: #5e585a;
-  ;
-}
-header div{
-  display: flex;
-  align-items: end;
-  
-}
-header p{
-  width: 50px;
-  padding: 10px 18px;
-  background-color: #5e585a;
-  margin: 2ex;
-  float: right;
-}
-header a{
-  color: rgb(199, 207, 214);
-}
-
-
-
-
-
-
-/* here */
-/* here */
-/* here */
-/* body {font-family: Arial, Helvetica, sans-serif;} */
-
-
-
-label{
-    font-size: 20px;
-    position:left;
-}
+body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[type=password] {
+input[type=email ], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -95,17 +9,9 @@ input[type=password] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-input[type=email]{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
 
-}
 /* Set a style for all buttons */
-.like_login_btn {
+button {
   background-color: #ac9fc1;
   color: white;
   padding: 14px 20px;
@@ -115,22 +21,28 @@ input[type=email]{
   width: 100%;
 }
 
-.like_login_btn:hover {
+button:hover {
   opacity: 0.8;/*cursor on translucent*/
 }
 
 /* Extra styles for the cancel button */
-.container{
-    display: block;
-}
 .cancelbtn {
-  float: left;
   width: auto;
   padding: 10px 18px;
   background-color: #5e585a;
-  
-
+  float: right;
 }
+.signupbtn{
+    width: auto;
+    padding: 10px 18px;
+    background-color: #5e585a;
+    float: left;
+}
+a{
+    color: #ccc;
+}
+
+
 
 /* Center the image and position the close button */
 .imgcontainer {
@@ -148,13 +60,10 @@ img.avatar {
   padding: 16px;
 }
 
-.container span {
+.forgot_psw {
   float: right;
   padding-top: 16px;
-  font-size: small;
 }
-
-
 
 /* The Modal (background) */
 .modal {
@@ -193,17 +102,4 @@ img.avatar {
 .close:focus {
   color: rgb(255, 0, 60);
   cursor: pointer;
-}
-
-
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.forgot_psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
 }

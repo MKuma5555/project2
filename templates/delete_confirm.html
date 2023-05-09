@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block authorize_content %}
+
+<form >
+    
+    <div id="box">
+        <h2 name="item" value>Are you sure to delete for {{item[0][1]}}?</h2>
+    </div>
+    <input type="Submit" formmethod="POST" formaction="/api/delete/venue" name="delete_submit" value="Yes"/>
+    <input type="Submit" formmethod="GET" formaction="/home" name="cancel_submit" value="NO"/>
+
+    <input type="hidden" id="postId" name="postId" value={{id}} />
+    <input type="hidden" id="postName" name="postName" value={{category_name}} />
+</form>
+
+
+
+{% endblock %}

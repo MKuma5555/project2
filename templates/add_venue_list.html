@@ -2,19 +2,22 @@
 
 {% block authorize_content %}
 
-<form action="" method="POST">
-    <label for="category">Choose Category</label>
-    <input type="text" name="category_name">
-    <datalist id="venue_category">
-        <option value="Internet Explorer">
-        <option value="Firefox">
-        <option value="Google Chrome">
-        <option value="Opera">
-        <option value="Safari">
-    </datalist>
-    
+<div id="add_form">
+<h2>You can add new Venues</h2>
+<form action="/api/add/venue_list" method="POST">
+    <label for="category_name">Choose Category</label>
+    <select id="venue_category"  name="category_name">
+        <option value="waterfront_list_table" >Waterfront</option>
+        <option value="winery_list_table" >Winery</option>
+        <option value="city_venue_list_table" >City</option>
+        <option value="heritage_list_table" >Heritage</option>
+        <option value="unique_list_table" >Unique</option>
+    </select>
+    <!-- <input type="submit" name="category_choose"> -->
+
 <p>Add new venue</p> 
-<ul>
+
+<ul class="add_form">
     <li>
         <label for="venue_name">Venue name:</label>
         <input type="text" name="venue_name">
@@ -29,7 +32,7 @@
         <label for="overview">overview:</label>
         <input type="text" name="overview">
     <li>
-        <label for="avg_price">Average price:</label>
+        <label for="avg_price">Average price :$</label>
         <input type="number" name="avg_price">
     <li>
         <label for="avg_guest">Average guest:</label>
@@ -43,4 +46,5 @@
 </form>
 
 <a href="/home">back to home</a>
+</div>
 {% endblock %}

@@ -8,7 +8,8 @@
 {% block venue_home_content %}
 <header>
     <h1>MENU</h1><br>
-    <p><a href="/authorizer_login">authorizer page</a> </p>
+    <p><a href="/authorizer_login">Admin page</a> </p>
+    <p><a href="/login">Log in</a> </p>
 </header>
 
 
@@ -17,17 +18,17 @@
 {% for c in venue_cate %}
 <div class="category" name="{{c[1]}}">
 
-
-   <a href="/{{c[1]}}"> <p class="category_name">{{c[1]}}</p></a>
+<!-- <form action="/each/venue/category/list<category_name>" method="POST"> -->
+   <a href="/{{c[1]}}"> <p name="category_name" value={{c[1]}} class="category_name">{{c[1]}}</p></a>
    
     <img src='{{c[2]}}' class="img">
-</form>    
+<!-- </form>     -->
 </div>
 {% endfor %}
 </div>
 
 <footer class="footer">
-    <p>Register to get special discount <button>sign up!</button> </p>
+    <p>Register to get special discount <button><a href="/sign_up">sign up!</a></button> </p>
  
     <ul class="social-icon">
       <li class="icon__item"><a class="icon__link" href="#">

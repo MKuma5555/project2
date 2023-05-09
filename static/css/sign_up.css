@@ -1,0 +1,47 @@
+
+    html{
+        background-image: url(https://i.insider.com/5eac8da748d92c3d275bb2de?width=700);
+        
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover; 
+        position: relative; 
+        color:  rgb(69, 62, 62);
+    }
+.form{
+    background-color: white;
+    width:500px;
+    height: auto;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    
+}
+.imgcontainer img{
+    width: 400px;
+    height: auto;
+    
+}
+.cancelbtn{
+    float: right;
+    color: rgb(69, 62, 62);
+    font-size:2em;
+}
+
+
+input[type=email], input[type=password],input[type=text],input[type=date],input[type=number]{
+    width: 98%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+}
+
+
+.login a{
+    color: aliceblue;
+    width: 50px;
+    padding: 10px 18px;
+    background-color: #5e585a; 
+}
