@@ -233,7 +233,7 @@ def user_login_form():
     return render_template('user_login.html')
 
 
-@app.route('/login/valid', methods=["POST"])
+@app.route('/login', methods=["POST","GET"])
 def login_action():
     email = request.form.get('user_email')
     plain_text_password = request.form.get('user_password')
@@ -244,15 +244,18 @@ def login_action():
     if user_info:
         session["user_id"] = user_info['id']
         session['user_name'] = user_info['name']
-        
-        return redirect ('/my_page')
+        return redirect('/my_page')
+        # return render_template('user_page.html',user=user_info)
     else:
         return f"Wrong email or password . You input email :{email}, password:{plain_text_password}"
 
+
+
 @app.route('/my_page')
 def goto_user_page():
-    who_is_user=common.sql_read('SELECT')
-    return render_template('user_page.html')
+    who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
+    print(who_is_user)
+    return render_template('user_page.html',user=who_is_user)
 
 
 
@@ -285,5 +288,5 @@ def create_user():
     <p>enjoy food truck<a href="/home">menu</a></p>
      <p>Is this valid password? {isValidPassword}</p> """
 
-
-app.run(debug=True)
+if __name__ =="__main__":
+    app.run(debug=True)
