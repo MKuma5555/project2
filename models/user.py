@@ -36,11 +36,12 @@ class Users:
         results=common.sql_read("SELECT * FROM users WHERE email=%s;",[self.email])
         if len(results):
             user=results[0]
-            user_formatted={"id":user[0],"email":user[1],"name":user[2],"password_hash":user[6]}
+            user_formatted={"id":user[0],"email":user[1],"name":user[2],"weddingDate":user[3],"guestNum":user[4],"budget":user[5] ,"password_hash":user[6]}
             
             #return user only if password match
             #if bcrypt.checkpw(self.plain_password.encode(),user_formatted['password_hash'].encode()):
             print(self.plain_password)
+            print(user_formatted)
             print(user_formatted['password_hash'])
             password_check=bcrypt.checkpw(self.plain_password.encode(),user_formatted['password_hash'].encode())     
             if password_check == True:

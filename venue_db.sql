@@ -160,9 +160,9 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     email TEXT NOT NULL,
     name VARCHAR(50) NOT NULL,
-    weddingDate text,
-    guestNum integer,
-    budget integer,
+    weddingDate TEXT NULL,
+    guestNum integer NULL,
+    budget integer NULL,
     password_hash TEXT NOT NULL
 );
 INSERT INTO users(email,name,weddingDate,guestNum,budget,password_hash)
