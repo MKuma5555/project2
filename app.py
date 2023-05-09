@@ -245,18 +245,21 @@ def login_action():
         session["user_id"] = user_info['id']
         session['user_name'] = user_info['name']
         
-        return redirect ('/user_page')
+        return redirect ('/my_page')
     else:
         return f"Wrong email or password . You input email :{email}, password:{plain_text_password}"
 
-@app.route('/user_page')
+@app.route('/my_page')
 def goto_user_page():
+    who_is_user=common.sql_read('SELECT')
     return render_template('user_page.html')
+
 
 
 
 @app.route('/sign_up')
 def form_sign_up():
+    
     return render_template('sign_up_form.html')
 
 
