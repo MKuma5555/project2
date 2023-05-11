@@ -2,6 +2,8 @@ import psycopg2
 import os
 db_password=os.getenv('DATABASE_PASSWORD')
 
+print(dict(name=os.getenv('DBNAME'),user=os.getenv('DBUSER') ,host=os.getenv('DBHOST') ,password=db_password,port=os.getenv('DBPORT')))
+
 def sql_read(query,parameters=[]):
     connection=psycopg2.connect(dbname=os.getenv('DBNAME'),user=os.getenv('DBUSER') ,host=os.getenv('DBHOST') ,password=db_password,port=os.getenv('DBPORT'))
     cursor=connection.cursor()
