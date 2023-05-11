@@ -8,10 +8,17 @@
 {% block venue_home_content %}
 <header>
     <h1>MENU</h1><br>
-    <p><a href="/authorizer_login">Admin page</a> </p>
-    <p><a href="/login">Log in</a> </p>
-    <p class="user_my_page"><a href="/my_page">My page</a></p>
-</header>
+<ul>
+    {% if not session["user_id"] %}
+    <!-- if already log in = not show -->
+    <li><a href="/login">Log in</a> </li>
+    {% endif %}
+    {% if  session["user_id"] %}
+    <li class="user_my_page"><a href="/my_page">My page</a></li>
+    <li><a href="/user_logout">Log out</a></li> 
+    {% endif %}
+  </ul>
+  </header>
 
 
 
@@ -29,7 +36,7 @@
 </div>
 
 <footer class="footer">
-    <p>Register to get special discount <button><a href="/sign_up">sign up!</a></button> </p>
+    <p class="sign_up_link">Register to get special discount <button><a href="/sign_up">sign up!</a></button> </p>
  
     <ul class="social-icon">
       <li class="icon__item"><a class="icon__link" href="#">
@@ -46,13 +53,13 @@
         </a></li>
     </ul>
     <ul class="menu">
-      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="/home">Home</a></li>
       <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Service</a></li>
+      <li class="menu__item"><a class="menu__link" href="/authorizer_login">Admin page</a></li>
 
     </ul>
-    <p>&copy;2021 Nadine Coelho | All Rights Reserved</p>
+    <p>&copy;2023 Project2</p>
   </footer>
 {% endblock %}

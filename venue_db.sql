@@ -168,5 +168,6 @@ CREATE TABLE users(
 INSERT INTO users(email,name,weddingDate,guestNum,budget,password_hash)
 VALUES
 ('eee@gmail.com','hello','November',250,70000,'$2b$12$x3uLjkZd3xuBJmhbOzFbmeUXmnB5AG6xFEkkiDw5LpR4utmjobL/e'),
-('zzz@test.com','world','December',150,50000,'123BfasfvsDFW'),
-('hhh@test.com','check','May',50,15000,'123CwFAWSVAS');
+('zzz@test.com','Emily','December',150,50000,'$2b$12$Sl6XLxFmYDvUvNzpJ6LdRePQ9U9HUtPWkEsmFfeJCk3PmLKI.p8aO'),
+('hhh@test.com','Anna','May',50,15000,'$2b$12$SIrOntaoxxk/HII/uwiINu7cr3TM6UnJmZXVTNDc0BIclahcofNWG');
+

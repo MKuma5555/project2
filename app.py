@@ -251,12 +251,24 @@ def login_action():
 
 
 
-@app.route('/my_page')
+@app.route('/my_page',methods=["post","Get"])
 def goto_user_page():
-    who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
-    print(who_is_user)
-    return render_template('user_page.html',user=who_is_user)
+    
+    # who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
+    # if who_is_user==False:
+    #     return "We don't know you"
+    # else:
+        who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
+        print(who_is_user)
+        like_btn=request.form.get('like_btn')
+        print(like_btn)
+        return render_template('user_page.html',user=who_is_user,like=like_btn)
 
+
+@app.route('/user_logout')
+def user_logout():
+    session['user_id']=None
+    return redirect ('/home')
 
 
 

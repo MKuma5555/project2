@@ -44,8 +44,9 @@
 <!-- pop login div box -->
 <!-- pop login div box -->
 <!-- pop login div box -->
-
-                <button class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="{{e[1]}}">♡</button>
+                  <form action="/my_page" method="Post"  >
+                <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="storns">♡</button>
+            </form>
                 {% if not session["user_id"] %}
                 <div id="id01" class="modal">
 

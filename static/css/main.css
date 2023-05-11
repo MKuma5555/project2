@@ -10,11 +10,38 @@ body{
     background-color: whitesmoke;
 }
 
-header p{
-  text-align: end;
+header{
+  
+  color: #fff;
+  background: #988ea4;
+  
 }
+
+header h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header li{
+  text-align: end;
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 10px 0;
+  cursor: pointer;
+  
+  
+ 
+}
+
 header a{
   color: aliceblue;
+  text-decoration: wavy;
+}
+header a:hover{
+  background-color: rgba(85, 83, 81, 0.8);
 }
 
 .big_div{
@@ -52,12 +79,7 @@ header a{
     background-color: rgba(152, 132, 111, 0.8);
 }
 
-header{
-    text-align: center;
-    color: #fff;
-    background: #988ea4;
-    
-}
+
 
 
 
@@ -115,6 +137,7 @@ header{
   
   .menu__link:hover {
     opacity: 1;
+    background-color: rgba(152, 132, 111, 0.8);
   }
   
   .footer p {
@@ -125,4 +148,7 @@ header{
   }
   
   
-  
+  .sign_up_link a{
+    text-decoration: none;
+    color: hotpink;
+  }

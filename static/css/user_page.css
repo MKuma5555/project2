@@ -1,0 +1,25 @@
+header{
+    background-color: rgb(250, 242, 242);
+}
+
+body{
+    background-color: rgb(202, 192, 211);
+    /* background-image: url(https://img.freepik.com/free-photo/couple-getting-married-beach_53876-25211.jpg?size=626&ext=jpg&ga=GA1.1.555780674.1683718494&semt=sph); */
+}
+
+.user_detail{
+    background-color: white;
+    width: 300px;
+    height: auto;
+    display: block;
+    color: rgb(62, 44, 31);
+}
+
+.pic_container img{
+    width: 300px;
+}
+
+.list_link a{
+    text-decoration: none;
+    color: rgb(189, 133, 94);
+}

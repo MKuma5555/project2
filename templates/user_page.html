@@ -1,32 +1,38 @@
 {% extends 'base.html' %}
 {% block img_content %}
- <!-- <link rel="stylesheet" href="../static/css/sign_up.css">  -->
+ <link rel="stylesheet" href="../static/css/user_page.css"> 
 
 {% endblock %}
 
 
 {% block user_content %}
+<header>
+    <p>My page </p>
+</header>
 
-<p>Hi {{user[0][1]}} welcome back</p>
-<p>success</p>
+<div class="user_detail">
+    <!-- <form class="modal-content" action="/login" method="post"> -->
+        <div class="pic_container">
+          <img src="https://t4.ftcdn.net/jpg/04/61/85/79/360_F_461857992_RirAq6HcxCI0FjL789wu3B5EsxzTXeKI.jpg">
+        </div>
+        
+            <p>User Name:{{user[0][2]}}</p>
+            <p>Your budget: ${{user[0][5]}}</p>
+            <p>Guests number: {{user[0][4]}} ppl</p>
+    
+    
+        <div class="list_container">
+          <ul class="list_link">
+            <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="saved_list" title="saved_list">Saved list</span></a></li>
+            <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="match_budget_list" title="match_budget_list">Match with Budget</span></a></li>
+            <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="match_guest" title="match_guest">Match with Guest number</span></a></li>
+        </ul>
+          
+        </div>
+    
 
-<div class="saved_venue">
-<h2>Your favorite venue list</h2>
-<ul>
-    <li>###liked list</li>
-</ul>
-</div>
-<div class="match_by_guestNum">
-    <h2>Match by your number of guest</h2>
-    <ul>
-        <li>###list macth guest number</li>
-    </ul>
-</div>
-
-<div class="match_by_budget">
-    <h2>Match by your budget</h2>
-    <ul>
-        <li>###match by budget</li>
-    </ul>
-</div>
+          <span class="forgot_pwd"> <a href="/home">back home</a></span>
+        
+     
+    </div>
 {% endblock %}
