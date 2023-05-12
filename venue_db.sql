@@ -24,7 +24,7 @@ VALUES
 
 
 
-DROP TABLE if exists winery_list_table;
+DROP TABLE if exists winery_list_table CASCADE;
 
 CREATE TABLE winery_list_table(
     id SERIAL PRIMARY KEY,
@@ -45,7 +45,7 @@ VALUES
 ('coombe','https://i.pinimg.com/736x/46/48/47/4648470e9549ab4ccbd98a0d37490b02--wedding-events-wedding-reception.jpg','Coldstream','text',25000,150);
 
 
-DROP TABLE if exists city_venue_list_table;
+DROP TABLE if exists city_venue_list_table CASCADE;
 
 CREATE TABLE city_venue_list_table(
     id SERIAL PRIMARY KEY,
@@ -68,7 +68,7 @@ VALUES
 
 
 
-DROP TABLE if exists waterfront_list_table;
+DROP TABLE if exists waterfront_list_table CASCADE;
 
 CREATE TABLE waterfront_list_table(
     id SERIAL PRIMARY KEY,
@@ -91,7 +91,7 @@ VALUES
 
 
 
-DROP TABLE if exists historic_list_table;
+DROP TABLE if exists historic_list_table CASCADE;
 
 CREATE TABLE historic_list_table(
     id SERIAL PRIMARY KEY,
@@ -114,7 +114,7 @@ VALUES
 
 
 
-DROP TABLE if exists unique_list_table;
+DROP TABLE if exists unique_list_table CASCADE;
 CREATE TABLE unique_list_table(
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -141,7 +141,7 @@ VALUES
 
 
 
-DROP TABLE if exists users;
+DROP TABLE if exists users CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
 
@@ -162,7 +162,7 @@ VALUES
    
 
 
-DROP TABLE if exists like_table;
+DROP TABLE if exists like_table CASCADE;
 CREATE TABLE like_table(
     id SERIAL PRIMARY KEY,
     user_id int,
