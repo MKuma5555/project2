@@ -29,8 +29,8 @@ def user_match_list(self):
 
 
 class Like_btn_list:
-        def __init__(self,id=0,name=None,img_pic=None):
-            
+        def __init__(self,table_name=None,id=0,name=None,img_pic=None):
+            self.table_name=table_name
             self.id=id
             self.name=name
             self.img_pic=img_pic
@@ -38,8 +38,8 @@ class Like_btn_list:
            
 
         def liked_venue_list(self):
-            common.sql_write("CREATE TABLE like_list (id SERIAL PRIMARY KEY,name VARCHAR(50) NOT NULL,img_pic VARCHAR(500);")
+            
             common.sql_write("""
             INSERT INTO like_list (name, img_pic) VALUES (%s,%s)""",[self.name,self.img_pic])
-
+            
             

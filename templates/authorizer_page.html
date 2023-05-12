@@ -1,15 +1,35 @@
 {% extends 'base.html' %}
 
 {% block authorize_content %}
-<h2>Hi {{name}} you are accessed</h2><br>
+<style>
+.block_container{
+    background-color: rgb(122, 143, 143);
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+li{
+    list-style-type: none;
+}
+li a{
+    color: midnightblue;
+}
+li a:hover{
+    background-color: dimgray;
+}
+</style>
+
+
+<div class="block_container">
+<h2>Hi {{name}} (success to login)</h2><br>
 <form action="/authorizer_login_check" method="POST">
     <ul>
-    <p><a href="/forms/add/venue_list" >add venue list form</p><br>
-    <p><a href="/check/venue/category" >edit venue list form</p><br>
-    <p><a href="/delete/venue" >Delete list of venue page</p><br>
-    <p><a href="/authorizer_logout" >logout</p><br>
+    <li><a href="/forms/add/venue_list" >Add venue list form</a></li><br>
+    <li><a href="/check/venue/category" >Edit venue list form</a></li><br>
+    <li><a href="/delete/venue" >Delete list of venue page</a></li><br>
+    <li><a href="/authorizer_logout" >logout</a></li><br>
     </ul>
 </form>
-
+</div>
 
 {% endblock %}

@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
 
 {% block authorize_content %}
+<style>
+    #add_form{
+        background-color: rgb(160, 162, 202);
+        height: auto;
+        
+        border: 5px solid;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+    label{
+    
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+          
+    }
+li{
+    list-style-type: none;
+}
+
+
+</style>
+
 
 <div id="add_form">
 <h2>You can add new Venues</h2>
@@ -38,7 +62,7 @@
         <label for="avg_guest">Average guest:</label>
         <input type="number" name="avg_guest">
     </li>
-    <input type="submit">
+    <input class="submit" type="submit">
     
     </ul>
 

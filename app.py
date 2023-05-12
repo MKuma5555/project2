@@ -85,8 +85,8 @@ def authorizer_check():
     input_name=request.form.get('name')
     input_password=request.form.get('password')
     authorizer_name=short.authorizer_login('WHERE name=%s',[input_name])
-
-    if  authorizer_name:
+    authorizer_password=short.authorizer_login('WHERE password=%s',[input_password])
+    if  authorizer_name and authorizer_password:
         session["user_id"]=authorizer_name['id']
         name=authorizer_name['name']
         password=authorizer_name['password']
@@ -99,7 +99,7 @@ def authorizer_check():
 
 @app.route('/authorizer_logout')
 def admin_logout():
-    session['user_id you']=None
+    session['user_id']=None
     return redirect ('/home')
 
 
@@ -289,7 +289,7 @@ def goto_user_page():
         print(liked[0])
         # liked_list_id.append(liked[0])
         # print(f"list id:{liked_list_id}")
-    return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list)
+    return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list,venue_id=venue_id)
 
 
 

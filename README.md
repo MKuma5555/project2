@@ -1,9 +1,9 @@
-# README
+# Melbourne wedding venue web 
 
-This is the [Flask](http://flask.pocoo.org/) [quick start](http://flask.pocoo.org/docs/1.0/quickstart/#a-minimal-application) example for [Render](https://render.com).
+This is the link for [Render](https://project2-fnip.onrender.com/home).
 
 The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
 
-## Deployment
+## For project2
 
 Follow the guide at https://render.com/docs/deploy-flask.
