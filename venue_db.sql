@@ -171,3 +171,29 @@ VALUES
 ('zzz@test.com','Emily','December',150,50000,'$2b$12$Sl6XLxFmYDvUvNzpJ6LdRePQ9U9HUtPWkEsmFfeJCk3PmLKI.p8aO'),
 ('hhh@test.com','Anna','May',50,15000,'$2b$12$SIrOntaoxxk/HII/uwiINu7cr3TM6UnJmZXVTNDc0BIclahcofNWG');
 
+
+
+-- DROP TABLE if exists likes;
+-- CREATE TABLE likes(
+--     id SERIAL PRIMARY KEY,
+--     user_id int,
+--     winery_id int,
+--     city_id int,
+--     waterfront_id int,
+--     historic_id int,
+--     unique_id int,
+--     foreign key (user_id) references users(id),
+--     foreign key (winery_id) references winery_list_table(id),
+--     foreign key (city_id) references city_venue_list_table(id),
+--     foreign key (waterfront_id) references waterfront_list_table(id),
+--     foreign key (historic_id) references historic_list_table(id),
+--     foreign key (unique_id) references unique_list_table(id));
+    
+
+
+DROP TABLE if exists like_table;
+CREATE TABLE like_table(
+    id SERIAL PRIMARY KEY,
+    user_id int,
+    like_table_name Text,
+    like_table_venue_id int);

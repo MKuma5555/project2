@@ -23,7 +23,7 @@
     
         <div class="list_container">
           <ul class="list_link">
-            <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="saved_list" title="saved_list">Saved list</span></a></li>
+            <li><a href="#"><span onclick="document.getElementById('show_liked').style.display='block'" class="saved_list" title="saved_list">Saved list</span></a></li>
             <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="match_budget_list" title="match_budget_list">Match with Budget</span></a></li>
             <li><a href="#"><span onclick="document.getElementById('show').style.display='block'" class="match_guest" title="match_guest">Match with Guest number</span></a></li>
         </ul>
@@ -31,8 +31,32 @@
         </div>
     
 
+
           <span class="forgot_pwd"> <a href="/home">back home</a></span>
         
      
     </div>
+
+
+    <div class="liked_container">
+ 
+      {% for  u in liked_venues %}
+      
+      <div class="liked_block">
+        <div class="venue_name" name="">{{u[0][1]}}</div>
+        <div class="card_image">
+            <img src='{{u[0][2]}}' class="img">
+        </div>
+        
+        <form  action="/delete_liked" method="POST"  >
+          {% for  liked in user_like_list %}
+         
+            <button  name="delete_liked_btn" value="{{liked[0]}}">DELETE</button>
+          {% endfor%}     
+        </form> 
+      </div> 
+      {% endfor%} 
+    </div>  
+    
+
 {% endblock %}

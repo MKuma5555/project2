@@ -10,8 +10,13 @@
     <h1>{{category_name}} Venue list</h1><br>
     <div class="a_link">
     <p class="back_to_home"><a href="/home">Home</a></p>
+    {% if not session["user_id"] %}
     <p class="go_to_login_page"><a href="/login">Log in</a></p>
+    {% endif %}
+    {% if session["user_id"] %}
     <p class="user_my_page"><a href="/my_page">My page</a></p>
+    <p ><a href="/user_logout">Log out</a></p>
+    {% endif%}
     </div>
 </header>
 
@@ -44,11 +49,13 @@
 <!-- pop login div box -->
 <!-- pop login div box -->
 <!-- pop login div box -->
-                  <form action="/my_page" method="Post"  >
-                <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="storns">♡</button>
-            </form>
-                {% if not session["user_id"] %}
-                <div id="id01" class="modal">
+{% if not session["user_id"] %}
+<!-- <form action="/my_page" method="Post"  > -->
+    <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[1]}}>♡</button>
+<!-- </form>             -->
+
+               
+            <div id="id01" class="modal">
 
                 <div class="like_clicked">
                     <form class="modal-content" action="/login" method="post">
@@ -77,14 +84,22 @@
                           <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                           <span class="forgot_pwd">Forgot <a href="#">password?</a></span>
                         </div>
-                      </form>
+                      
                     </div>
                     </div>
+            
+            {% else:%}
+            <form action="/like" method="POST"  >
+                <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[0]}}>♡</button>
+                <input type="hidden" id="postName" name="postName" value={{table_name}} />
+            </form>
+
             {% endif %}
+        </form>
         </span>
         
         <p class="card_text">
-            {{e[4]}}
+            {{e[4]}}z
         </p>
     </div>
     <div class="card_footer">

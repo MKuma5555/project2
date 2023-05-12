@@ -3,23 +3,43 @@ import bcrypt
 from models import common,short
 
 
+class Match:
+ def __init__(self,name=None,email=None,weddingDate=None,guestNum=0,budget=0,plain_password=None):
+        self.name=name
+        self.email=email
+        self.plain_password=plain_password
+        self.weddingDate=weddingDate
+        self.guestNum=guestNum
+        self.budget=budget
 
-# class Users:
-#     def __init__(self,name=None,img_pic=None,
-#                     location=None,
-#                     overview=None,
-#                     avg_price=0,
-#                     avg_ppl=0):
-#         self.name=name
-#         self.img_pic=img_pic
-#         self.location=location
-#         self.overview=overview
-#         self.avg_price=avg_price
-#         self.avg_ppl=avg_ppl
-
-
-def budget_match(self):
+def user_match_list(self):
     table_name_list=["winery_list_table","city_venue_list_table","waterfront_list_table","historic_list_table","unique_list_table"]
     for table_name in table_name_list:
         print(table_name)
-    match_budget=common.sql_read(f"SELECT * FROM {table_name} ")
+    check_match=common.sql_read(f"SELECT * FROM {table_name} ")
+
+    user=common.sql_read("SELECT * FROM users WHERE id=%s",session["user_id"])
+
+    if check_match['avg_price'] <= user['budget']:
+        return f"{check_match['avg_price']}"
+    if check_match['']:
+        return None 
+
+
+
+
+class Like_btn_list:
+        def __init__(self,id=0,name=None,img_pic=None):
+            
+            self.id=id
+            self.name=name
+            self.img_pic=img_pic
+        
+           
+
+        def liked_venue_list(self):
+            common.sql_write("CREATE TABLE like_list (id SERIAL PRIMARY KEY,name VARCHAR(50) NOT NULL,img_pic VARCHAR(500);")
+            common.sql_write("""
+            INSERT INTO like_list (name, img_pic) VALUES (%s,%s)""",[self.name,self.img_pic])
+
+            

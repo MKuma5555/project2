@@ -2,9 +2,7 @@ from flask import Flask,render_template,request,session,redirect
 
 import psycopg2
 import bcrypt
-from models import short,common,add_edit_venue,user
-
-
+from models import short,common,add_edit_venue,user,user_match_list
 
 
 import os
@@ -19,7 +17,6 @@ app.config["SECRET_KEY"] = db_password
 
 @app.route('/home')
 def home():
-    # results=short.main_short("SELECT * FROM venue_category;")
     results=short.main_short()
     venue_cate=[]
     for r in results:
@@ -29,61 +26,54 @@ def home():
 
 @app.route('/Winery')
 def winery_page():
+    table_name="winery_list_table"
     each_venue_list=short.each_list("winery_list_table")
     category_name='Winery'
     winery_list=[]
     for each in each_venue_list:
         winery_list.append(each)
-    return render_template("venue_list.html",list=winery_list,category_name=category_name)
+    return render_template("venue_list.html",list=winery_list,category_name=category_name,table_name=table_name)
 
 
 @app.route('/City')
 def city_page():
+    table_name='city_venue_list_table'
     each_venue_list=short.each_list("city_venue_list_table")
     category_name='City'
     city_list=[]
     for each in each_venue_list:
         city_list.append(each)
-    return render_template("venue_list.html",list=city_list,category_name=category_name)
+    return render_template("venue_list.html",list=city_list,category_name=category_name,table_name=table_name)
 
 @app.route('/Waterfront')
 def waterfront_page():
+    table_name='waterfront_list_table'
     each_venue_list=short.each_list('waterfront_list_table')
     category_name='Waterfront'
     waterfront_list=[]
     for each in each_venue_list:
         waterfront_list.append(each)
-    return render_template("venue_list.html",list=waterfront_list,category_name=category_name)
+    return render_template("venue_list.html",list=waterfront_list,category_name=category_name,table_name=table_name)
 
 @app.route('/Historic')
 def historic_list():
+    table_name='historic_list_table'
     each_venue_list=short.each_list('historic_list_table')
     category_name='Historic'
     historic_list=[]
     for each in each_venue_list:
         historic_list.append(each)
-    return render_template("venue_list.html",list=historic_list,category_name=category_name)
+    return render_template("venue_list.html",list=historic_list,category_name=category_name,table_name=table_name)
 
 @app.route('/Unique')
 def unique_list():
+    table_name='unique_list_table'
     each_venue_list=short.each_list('unique_list_table')
     category_name='Unique'
     unique_list=[]
     for each in each_venue_list:
         unique_list.append(each)
-    return render_template("venue_list.html",list=unique_list,category_name=category_name)
-
-# @app.route('/each/venue/category/list<category_name>')
-# def each_list():
-#     table_name=
-#     each_venue_list=short.each_list(table_name)
-#     category_name='Historic'
-#     historic_list=[]
-#     for each in each_venue_list:
-#         historic_list.append(each)
-#     return render_template("venue_list.html",list=historic_list,category_name=category_name)
-
-
+    return render_template("venue_list.html",list=unique_list,category_name=category_name,table_name=table_name)
 
 
 @app.route('/authorizer_login')
@@ -94,10 +84,7 @@ def authorizer_form():
 def authorizer_check():
     input_name=request.form.get('name')
     input_password=request.form.get('password')
-
-    # authorizer_password=short.authorizer_login("WHERE password=%s",[float(input_password)])
     authorizer_name=short.authorizer_login('WHERE name=%s',[input_name])
-   
 
     if  authorizer_name:
         session["user_id"]=authorizer_name['id']
@@ -245,24 +232,9 @@ def login_action():
         session["user_id"] = user_info['id']
         session['user_name'] = user_info['name']
         return redirect('/my_page')
-        # return render_template('user_page.html',user=user_info)
     else:
         return f"Wrong email or password . You input email :{email}, password:{plain_text_password}"
 
-
-
-@app.route('/my_page',methods=["post","Get"])
-def goto_user_page():
-    
-    # who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
-    # if who_is_user==False:
-    #     return "We don't know you"
-    # else:
-        who_is_user=common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
-        print(who_is_user)
-        like_btn=request.form.get('like_btn')
-        print(like_btn)
-        return render_template('user_page.html',user=who_is_user,like=like_btn)
 
 
 @app.route('/user_logout')
@@ -274,9 +246,7 @@ def user_logout():
 
 @app.route('/sign_up')
 def form_sign_up():
-    
     return render_template('sign_up_form.html')
-
 
 
 @app.route('/sign_up',methods=["POST"])
@@ -291,7 +261,6 @@ def create_user():
     
     hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     isValidPassword = bcrypt.checkpw(password.encode(), hashed_password.encode())
-    #return f"{isValidPassword}"
     common.sql_write("INSERT INTO users (email,name,weddingDate,guestNum,budget,password_hash)VALUES(%s,%s,%s,%s,%s,%s);",[email,name,date,guests,budget,hashed_password])
     results=common.sql_read("SELECT * FROM users WHERE email=%s;",[email])
     
@@ -299,6 +268,79 @@ def create_user():
     <p> Hi {results[0][2]}. Your email :{results[0][1]} Your password:{results[0][6]}</p><br>
     <p>enjoy food truck<a href="/home">menu</a></p>
      <p>Is this valid password? {isValidPassword}</p> """
+
+
+
+@app.route('/my_page', methods=["POST", "GET"])
+def goto_user_page():
+ 
+    who_is_user = common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
+    user_like_list = common.sql_read(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
+    print(user_like_list[0])
+    liked_list_id=[]
+    liked_venues = []
+    for  liked in user_like_list :
+        table_name=liked[2]
+        venue_id=liked[3]
+        venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
+        liked_venues.append(venue)
+        print(liked_venues)
+        # liked_list_id.append(liked[0])
+        # print(f"list id:{liked_list_id}")
+    return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list,liked_list_id=liked_list_id)
+
+
+
+    
+
+@app.route('/like',methods=["POST"])
+def like_page():
+    venue_id=request.form.get('like_btn')
+    table_name=request.form.get('postName')
+    session['venue_id']=venue_id
+    session['table_name']=table_name
+    
+    results=common.sql_write("INSERT INTO like_table ( user_id, like_table_name,like_table_venue_id) VALUES(%s,%s,%s);",[session["user_id"],session['table_name'],session['venue_id']])  
+    return redirect('/my_page')
+   
+
+@app.route('/delete_liked',methods=["POST"])
+def delete_liked_list():
+    delete_btn=request.form.get("delete_liked_btn")
+    print(f'this is id: {delete_btn}')
+    #delete_venue=common.simple(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
+    bye=common.simple(f"DELETE FROM like_table WHERE  id={delete_btn}")
+    return redirect('/my_page')
+# @app.route('/like', methods=["POST"])
+# def like_page():
+#     venue_id = request.form.get('like_btn')
+#     table_name = request.form.get('postName')
+#     session['venue_id']=venue_id
+    
+#     if table_name == "winery_list_table":
+#         session['table_name']=table_name
+#         results = common.sql_write("INSERT INTO likes (user_id, winery_id) VALUES (%s, %s);", [session["user_id"], venue_id])
+        
+#     elif table_name == "city_venue_list_table":
+#         session['table_name']=table_name
+#         results = common.sql_write("INSERT INTO likes (user_id, city_id) VALUES (%s, %s);", [session["user_id"], venue_id])
+        
+#     elif table_name == "waterfront_list_table":
+#         session['table_name']=table_name
+#         results = common.sql_write("INSERT INTO likes (user_id, waterfront_id) VALUES (%s, %s);", [session["user_id"], venue_id])
+        
+#     elif table_name == "historic_list_table":
+#         session['table_name']=table_name
+#         results = common.sql_write("INSERT INTO likes (user_id, historic_id) VALUES (%s, %s);", [session["user_id"], venue_id])
+        
+#     elif table_name == "unique_list_table":
+#         session['table_name']=table_name
+#         results = common.sql_write("INSERT INTO likes (user_id, unique_id) VALUES (%s, %s);", [session["user_id"], venue_id])
+
+#     return redirect('/my_page')
+
+
+
 
 if __name__ =="__main__":
     app.run(debug=True,port=os.getenv("PORT", default=5000))
