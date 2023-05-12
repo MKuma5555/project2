@@ -138,26 +138,13 @@ VALUES
 
 
 
--- DROP TABLE if exists users;
--- CREATE TABLE users(
---     id SERIAL PRIMARY KEY,
---     email TEXT NOT NULL,
---     name VARCHAR(50) NOT NULL,
---     password_hash TEXT NOT NULL
--- );
--- INSERT INTO users(email,name,password_hash)
--- VALUES
--- -- ('eee@gmail.com','hello','123A'),
--- -- ('zzz@test.com','world','123B'),
--- -- ('hhh@test.com','check','123C');
--- ('foo@gmail.com', 'foo bar', '$2b$12$l4i64Xk9Iy7kZktddKlqHOoq4U80lphevF5IPsGcI3eFmZz55GGTe'),
--- ('bar@hotmail.com', 'bar baz', '$2b$12$l4i64Xk9Iy7kZktddKlqHO05wtZUyMhEO1z3OiVOd9/Tb5oBTkW3S');
 
 
 
 DROP TABLE if exists users;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
+
     email TEXT NOT NULL,
     name VARCHAR(50) NOT NULL,
     weddingDate TEXT NULL,
@@ -172,23 +159,7 @@ VALUES
 ('hhh@test.com','Anna','May',50,15000,'$2b$12$SIrOntaoxxk/HII/uwiINu7cr3TM6UnJmZXVTNDc0BIclahcofNWG');
 
 
-
--- DROP TABLE if exists likes;
--- CREATE TABLE likes(
---     id SERIAL PRIMARY KEY,
---     user_id int,
---     winery_id int,
---     city_id int,
---     waterfront_id int,
---     historic_id int,
---     unique_id int,
---     foreign key (user_id) references users(id),
---     foreign key (winery_id) references winery_list_table(id),
---     foreign key (city_id) references city_venue_list_table(id),
---     foreign key (waterfront_id) references waterfront_list_table(id),
---     foreign key (historic_id) references historic_list_table(id),
---     foreign key (unique_id) references unique_list_table(id));
-    
+   
 
 
 DROP TABLE if exists like_table;
