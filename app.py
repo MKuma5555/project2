@@ -277,6 +277,7 @@ def goto_user_page():
     who_is_user = common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
     user_like_list = common.sql_read(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
     
+    
     liked_list_id=common.sql_read(f"SELECT id from like_table WHERE user_id={session['user_id']}")
     
     liked_venues = []
@@ -285,11 +286,14 @@ def goto_user_page():
         venue_id=liked[3]
         venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
         liked_venues.append(venue)
-        session['liked_table_id']=liked[0]
-        print(liked[0])
+        # session['liked_table_id']=liked[0]
+        # print(liked[0])
         # liked_list_id.append(liked[0])
         # print(f"list id:{liked_list_id}")
-    return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list,venue_id=venue_id)
+
+    # for  u,index in enumerate(liked_venues):
+    #     u[0].append(user_like_list[index][0])
+    return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list)
 
 
 

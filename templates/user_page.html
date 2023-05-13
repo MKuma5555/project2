@@ -49,12 +49,10 @@
         </div>
         
         <form  action="/delete_liked" method="POST"  >
-          {% for  liked in user_like_list %}
-        
-            
+          
+        {% for liked in user_like_list%}
             <button  name="delete_liked_btn" value="{{liked[0]}}">DELETE</button>
-      
-            {% endfor%}     
+        {% endfor%}  
         </form> 
       </div> 
       {% endfor%} 
