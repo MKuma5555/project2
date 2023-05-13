@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 
 {% block authorize_content %}
+<style>
+    div{
+        background-color: rgb(160, 162, 202);
+        height: auto;
+        text-align: center;
+        border: 5px solid;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
 
+   
+  
+    label{
+    
+        display: inline-block;
+        width: 150px;
+        text-align: right;
+          
+    }
+</style>
+<div>
+    <h2>Admin login page</h2>
 <form action="/authorizer_login_check" method="POST">
     <label for="name">Name</label>
-    <input type="text" name="name" >
+    <input type="text" name="name" ><br>
 
     <label for="password">password</label>
-    <input type="password" name="password">
+    <input type="password" name="password"><br>
 
     <input type="submit">
 
@@ -16,3 +38,4 @@
 
 <a href="/home">back to home</a>
 {% endblock %}
+</div>
