@@ -278,13 +278,14 @@ def goto_user_page():
     user_like_list = common.sql_read(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
     
     
-    liked_list_id=common.sql_read(f"SELECT id from like_table WHERE user_id={session['user_id']}")
+    #liked_list_id=common.sql_read(f"SELECT id from like_table WHERE user_id={session['user_id']}")
     
     liked_venues = []
     for  liked in user_like_list :
         table_name=liked[2]
         venue_id=liked[3]
         venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
+        venue.append(table_name)
         liked_venues.append(venue)
         # session['liked_table_id']=liked[0]
         # print(liked[0])

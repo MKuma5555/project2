@@ -51,8 +51,10 @@
         <form  action="/delete_liked" method="POST"  >
           
         {% for liked in user_like_list%}
+        {% if  liked[3] == u[0][0] and liked[2]== u[1]%}
             <button  name="delete_liked_btn" value="{{liked[0]}}">DELETE</button>
-        {% endfor%}  
+        {% endif%}
+            {% endfor%}  
         </form> 
       </div> 
       {% endfor%} 
