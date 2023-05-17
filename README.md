@@ -1,6 +1,6 @@
 # Melbourne wedding venue web 
 
-This is the link for [RENDER](https://project2-fnip.onrender.com/home) 
+This is the link for [RENDER](https://project2-fnip.onrender.com) 
 
 The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
 
@@ -33,35 +33,7 @@ _____
 
 * I struggled to trigger "like button" list create User like list table to get data and push into "my_page" to show.
   
-## NEED to fix and 
-_____
-This is "user MY_page"
-Need to create each value has each delete button with like_table id to trigger delete button for DELETE specific data from table.
-However, i couldn't fix "button"'s for loop that looping same as first loop amount of value. instead each button for each list... each list has multiple delete buttons.
 
-```````js
-
-    <div class="liked_container">
- 
-      {% for  u in liked_venues %}
-      
-      <div class="liked_block">
-        <div class="venue_name" name="">{{u[0][1]}}</div>
-        <div class="card_image">
-            <img src='{{u[0][2]}}' class="img">
-        </div>
-        
-        <form  action="/delete_liked" method="POST"  >
-          {% for  liked in user_like_list %}
-        
-            
-            <button  name="delete_liked_btn" value="{{liked[0]}}">DELETE</button>
-      
-            {% endfor%}     
-        </form> 
-      </div> 
-      {% endfor%} 
-    </div>  
 
 `````````
 ## ADD more structure

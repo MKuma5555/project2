@@ -15,7 +15,7 @@ app.config["SECRET_KEY"] = db_password
 
 
 
-@app.route('/home')
+@app.route('/')
 def home():
     results=short.main_short()
     venue_cate=[]
@@ -100,7 +100,7 @@ def authorizer_check():
 @app.route('/authorizer_logout')
 def admin_logout():
     session['user_id']=None
-    return redirect ('/home')
+    return redirect ('/')
 
 
 @app.route('/forms/add/venue_list')
@@ -132,7 +132,7 @@ def api_add_venue_list():
 
     # # venue_list=common.sql_write(f"INSERT INTO {category}(name, img_pic,location,overview,avg_price,avg_ppl) VALUES (%s,%s,%s,%s,%s,%s)", [venue_name, venue_img,location,overview,int(avg_price),int(avg_guest) ])
     # venue_list=short.add_venue_list([venue_name, venue_img,location,overview,int(avg_price),int(avg_guest) ])
-    return redirect("/home")
+    return redirect("/")
 
 
 @app.route('/check/venue/category')
@@ -162,7 +162,7 @@ def api_venue_list():
     form=request.form
     edit_venue=add_edit_venue.Venue_adj(table_name,id)
     edit_venue.update_venue_list(form.get('venue_name'),form.get('venue_img'),form.get('location'),form.get('overview'),form.get('avg_price'),form.get('avg_guest'),)
-    return redirect('/home')
+    return redirect('/')
 
  #####this is code without using class venue_adj #####
     # connection=psycopg2.connect(dbname="venue",user="postgres" ,host="127.0.0.1" ,password=db_password)
@@ -210,7 +210,7 @@ def delete_confirm():
     # table_name=request.form.get('postName'),
     # id=request.form.get("postId"), 
     # results=common.simple(f"DELETE FROM {table_name[0]} WHERE id={id[0]} ")
-    return redirect('/home')
+    return redirect('/')
     
 
 
@@ -240,7 +240,7 @@ def login_action():
 @app.route('/user_logout')
 def user_logout():
     session['user_id']=None
-    return redirect ('/home')
+    return redirect ('/')
 
 
 
@@ -266,7 +266,7 @@ def create_user():
     
     return  f"""
     <p> Hi {results[0][2]}. Your email :{results[0][1]} Your password:{results[0][6]}</p><br>
-    <p>enjoy food truck<a href="/home">menu</a></p>
+    <p>enjoy food truck<a href="/">menu</a></p>
      <p>Is this valid password? {isValidPassword}</p> """
 
 
