@@ -4,11 +4,8 @@ import psycopg2
 import bcrypt
 from models import short,common,add_edit_venue,user,user_match_list
 
-
 import os
 db_password=os.getenv('DATABASE_PASSWORD')
-
-
 
 app=Flask(__name__)
 app.config["SECRET_KEY"] = db_password
@@ -21,12 +18,12 @@ def home():
     venue_cate=[]
     for r in results:
         venue_cate.append(r)
-
     return render_template('home_page.html',venue_cate=venue_cate)
+
 
 @app.route('/venue_list')
 def venue_list():
-    category = request.args.get('category')  # Access the value of the "category" query parameter
+    category = request.args.get('category') 
 
     results = common.sql_read("SELECT category_name FROM category_list")
     for category_name in results:
@@ -41,59 +38,6 @@ def venue_list():
                     venue_list.append(each)
                 return render_template("venue_list.html", list=venue_list, category_name=category_name, table_name=category)
             
-
-
-
-# @app.route('/Winery')
-# def winery_page():
-#     table_name="winery_list_table"
-#     each_venue_list=short.each_list("winery_list_table")
-#     category_name='Winery'
-#     winery_list=[]
-#     for each in each_venue_list:
-#         winery_list.append(each)
-#     return render_template("venue_list.html",list=winery_list,category_name=category_name,table_name=table_name)
-
-
-# @app.route('/City')
-# def city_page():
-#     table_name='city_venue_list_table'
-#     each_venue_list=short.each_list("city_venue_list_table")
-#     category_name='City'
-#     city_list=[]
-#     for each in each_venue_list:
-#         city_list.append(each)
-#     return render_template("venue_list.html",list=city_list,category_name=category_name,table_name=table_name)
-
-# @app.route('/Waterfront')
-# def waterfront_page():
-#     table_name='waterfront_list_table'
-#     each_venue_list=short.each_list('waterfront_list_table')
-#     category_name='Waterfront'
-#     waterfront_list=[]
-#     for each in each_venue_list:
-#         waterfront_list.append(each)
-#     return render_template("venue_list.html",list=waterfront_list,category_name=category_name,table_name=table_name)
-
-# @app.route('/Historic')
-# def historic_list():
-#     table_name='historic_list_table'
-#     each_venue_list=short.each_list('historic_list_table')
-#     category_name='Historic'
-#     historic_list=[]
-#     for each in each_venue_list:
-#         historic_list.append(each)
-#     return render_template("venue_list.html",list=historic_list,category_name=category_name,table_name=table_name)
-
-# @app.route('/Unique')
-# def unique_list():
-#     table_name='unique_list_table'
-#     each_venue_list=short.each_list('unique_list_table')
-#     category_name='Unique'
-#     unique_list=[]
-#     for each in each_venue_list:
-#         unique_list.append(each)
-#     return render_template("venue_list.html",list=unique_list,category_name=category_name,table_name=table_name)
 
 
 @app.route('/authorizer_login')
@@ -154,17 +98,8 @@ def check_venue_category():
 
 @app.route('/forms/edit/venue_list',methods=["POST"])
 def edit_venue_list_form():
-    # category_name=request.form.get('category_name')
     id_input=request.form.get('id')
     venue_name_select=request.form.get('venue_name')
-
-    # is_valid=common.sql_read(f"SELECT * FROM {table_name}")
-    # if int(id_input) <= int(len(is_valid)):
-    #     item=common.sql_read(f"SELECT * FROM {table_name} WHERE id={id_input}")
-    #     return render_template("edit_venue_list.html",table_name=table_name,item=item,id=id_input)
-    # else:
-    #     return """<h2>The id is not valid</h2><br>
-    #             <a href="/check/venue/category">back to select category/id</a> """
     item=common.sql_read(f"SELECT * FROM category_list WHERE name='{venue_name_select}'")
     return render_template("edit_venue_list.html",item=item,venue_name_select= venue_name_select)
 
@@ -179,27 +114,7 @@ def api_venue_list():
     edit_venue.update_venue_list(form.get('venue_category') ,form.get('venue_name'),form.get('venue_img'),form.get('location'),form.get('overview'),form.get('avg_price'),form.get('avg_guest'),)
     return redirect('/')
 
- #####this is code without using class venue_adj #####
-    # connection=psycopg2.connect(dbname="venue",user="postgres" ,host="127.0.0.1" ,password=db_password)
-    # cursor=connection.cursor()
-    
-    # table_name=request.form.get('postName')
-    # id=request.form.get('postId')
 
-    # new_name=request.form.get('venue_name')
-    # new_img_pic=request.form.get('venue_img')
-    # new_location=request.form.get('location')
-    # new_overview=request.form.get('overview')
-    # new_avg_price=request.form.get('avg_price')
-    # new_avg_ppl=request.form.get('avg_guest')
-    # check=cursor.execute(f"SELECT * FROM {table_name} Where id=9")
-    # # edit_list=cursor.execute("""
-    # # UPDATE winery_list_table SET name=%s,img_pic=%s,location=%s,overview=%s,avg_price=%s,avg_ppl=%s WHERE id=%s""",
-    # # (new_name,new_img_pic,new_location,new_overview,new_avg_price,new_avg_ppl,id))
-    # connection.commit()
-    # connection.close()
-    # #return redirect('/home')
-    
 
 @app.route('/delete/venue')
 def delete_venue():
@@ -211,8 +126,6 @@ def delete_venue():
 def delete_check():
     venue_name=request.form.get('venue_name')
     id=common.sql_read(f"SELECT id FROM category_list WHERE name='{venue_name}'")
-
-    # item_name=common.sql_read(f'SELECT * FROM {category_name} WHERE id={id}')
     item_name=common.sql_read(f'SELECT * FROM category_list WHERE id={id[0][0]}')
     return render_template('delete_confirm.html',category_name=venue_name,id=id[0][0],item=item_name)
 
@@ -221,14 +134,9 @@ def delete_check():
 def delete_confirm():
     form=request.form
     delete_submit=add_edit_venue.Venue_adj(
-            # form.get('postName'),
             form.get("postId"),      
     )
     check=delete_submit.delete_venue()
-######blow code without using class code#####
-    # table_name=request.form.get('postName'),
-    # id=request.form.get("postId"), 
-    # results=common.simple(f"DELETE FROM {table_name[0]} WHERE id={id[0]} ")
     return redirect('/')
     
 
@@ -292,21 +200,10 @@ def create_user():
 
 @app.route('/my_page', methods=["POST", "GET"])
 def goto_user_page():
- 
     who_is_user = common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
     user_like_list = common.sql_read(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
     print(f'This is user_like_listP{user_like_list}')
     
-   
-    ###This is before adjust code
-    # liked_venues = []
-    # for  liked in user_like_list :
-    #     table_name=liked[2]
-    #     venue_id=liked[3]
-    #     venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
-    #     venue.append(table_name)
-    #     liked_venues.append(venue)
-   
     liked_venues = []
     for  liked in user_like_list :
         print(liked)
@@ -321,19 +218,6 @@ def goto_user_page():
     return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list)
 
 
-
-    
-# This is before adjust 
-# @app.route('/like',methods=["POST"])
-# def like_page():
-#     venue_id=request.form.get('like_btn')
-#     table_name=request.form.get('postName')
-#     session['venue_id']=venue_id
-#     session['table_name']=table_name
-    
-#     results=common.sql_write("INSERT INTO like_table ( user_id, like_table_name,like_table_venue_id) VALUES(%s,%s,%s);",[session["user_id"],session['table_name'],session['venue_id']])  
-#     return redirect('/my_page')
-   
 
 @app.route('/like',methods=["POST"])
 def like_page():
@@ -358,39 +242,8 @@ def like_page():
 def delete_liked_list():
     delete_btn=request.form.get("delete_liked_btn")
     print(f'this is id: {delete_btn}')
-    #delete_venue=common.simple(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
     bye=common.simple(f"DELETE FROM like_table WHERE  id={delete_btn}")
     return redirect('/my_page')
-# @app.route('/like', methods=["POST"])
-# def like_page():
-#     venue_id = request.form.get('like_btn')
-#     table_name = request.form.get('postName')
-#     session['venue_id']=venue_id
-    
-#     if table_name == "winery_list_table":
-#         session['table_name']=table_name
-#         results = common.sql_write("INSERT INTO likes (user_id, winery_id) VALUES (%s, %s);", [session["user_id"], venue_id])
-        
-#     elif table_name == "city_venue_list_table":
-#         session['table_name']=table_name
-#         results = common.sql_write("INSERT INTO likes (user_id, city_id) VALUES (%s, %s);", [session["user_id"], venue_id])
-        
-#     elif table_name == "waterfront_list_table":
-#         session['table_name']=table_name
-#         results = common.sql_write("INSERT INTO likes (user_id, waterfront_id) VALUES (%s, %s);", [session["user_id"], venue_id])
-        
-#     elif table_name == "historic_list_table":
-#         session['table_name']=table_name
-#         results = common.sql_write("INSERT INTO likes (user_id, historic_id) VALUES (%s, %s);", [session["user_id"], venue_id])
-        
-#     elif table_name == "unique_list_table":
-#         session['table_name']=table_name
-#         results = common.sql_write("INSERT INTO likes (user_id, unique_id) VALUES (%s, %s);", [session["user_id"], venue_id])
-
-#     return redirect('/my_page')
-
-
-
 
 if __name__ =="__main__":
     app.run(debug=True,port=os.getenv("PORT", default=5000))

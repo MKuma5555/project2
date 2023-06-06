@@ -10,7 +10,7 @@
     <h1>MENU</h1><br>
 <ul>
     {% if not session["user_id"] %}
-    <!-- if already log in = not show -->
+
     <li><a href="/login">Log in</a> </li>
     {% endif %}
     {% if  session["user_id"] %}

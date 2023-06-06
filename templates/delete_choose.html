@@ -25,15 +25,6 @@ li{
 <div id="check_category_form">
 <h2>Choose table category</h2>
 <form action="/delete/check" method="POST">
-    <!-- <label for="category_name">Choose Category</label> -->
-    <!-- <select id="venue_category"  name="category_name">
-        <option value="waterfront_list_table" >Waterfront</option>
-        <option value="winery_list_table" >Winery</option>
-        <option value="city_venue_list_table" >City</option>
-        <option value="heritage_list_table" >Heritage</option>
-        <option value="unique_list_table" >Unique</option>
-    </select><br> -->
-
     <label for="vene_name">choose venue name</label>
     <select id="venue_name_list" name="venue_name">
         {% for show in venue_name%}
@@ -41,8 +32,6 @@ li{
         {% endfor %}
     </select>
 
-    <!-- <label for="id">choose item id</label>
-    <input type="number" name="id"> -->
     <input name='delete_item' type="submit">
 
 

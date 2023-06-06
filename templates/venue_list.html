@@ -43,16 +43,10 @@
         </span>
         <span class="card_address">📍{{e[4]}} </span>
         <span class="card_like_button">
-            <!-- <button class="like" formaction="/like_clicked" aria-label="Save"> -->
-                <!-- <label><a class="login_like" href="/like_clicked">♡</a></label></button> -->
-                
-                
+     
 
-<!-- pop login div box -->
 {% if not session["user_id"] %}
-<!-- <form action="/my_page" method="Post"  > -->
     <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[1]}}>♡</button>
-<!-- </form>             -->
 
                
             <div id="id01" class="modal">
@@ -69,7 +63,6 @@
                         <div class="input_container">
                           <label for="user_email"><b>User Email</b></label>
                           <input type="email" placeholder="Enter User email" name="user_email" required>
-                          <!-- required=pecifies that an input field must be filled out before submitting the form -->
                     
                           <label for="user_password"><b>Password</b></label>
                           <input type="password" placeholder="Enter Password" name="user_password" required>
@@ -90,8 +83,6 @@
             
             {% else:%}
             <form action="/like" method="POST"  >
-                <!-- <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[0]}}>♡</button>
-                <input type="hidden" id="postName" name="postName" value={{table_name}} /> -->
                 <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="{{e[2]}}">♡</button>
                 <input type="hidden" id="postName" name="postName" value={{table_name}} />
 
@@ -120,16 +111,13 @@
 
 
 <script>
-// Get the modal
-var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('id01');
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
-
 
 
 </script>
