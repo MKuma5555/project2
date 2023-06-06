@@ -31,36 +31,42 @@
 
 
 <form action="/api/edit/venue_list" method="POST">
-    <input type="hidden" id="postName" name="postName" value="{{table_name}}">
-    <p>This is category : {{table_name}}</p><br>
+    <input type="hidden" id="postName" name="postName" value="{{item[0][1]}}">
+
+    <p>This is category : {{item[0][1]}}</p><br>
     <!-- <input name="id" value={{id}}>id :{{id}}> -->
 <ul class="add_form">
     <li>
+        <label for="venue_category">Venue category:</label>
+        <input type="text" name="venue_category" value={{item[0][1]}}>
+    <li>
+    <li>
         <label for="venue_name">Venue name:</label>
-        <input type="text" name="venue_name" value={{item[0][1]}}>
+        <input type="text" name="venue_name" value={{item[0][2]}}>
     <li>
         <label for="venue_img">Image URL:</label>
-        <input type="text" name="venue_img" value={{item[0][2]}}>
+        <input type="text" name="venue_img" value={{item[0][3]}}>
     <li>
         <label for="location">Location:</label>
-        <input type="text" name="location" value={{item[0][3]}}>
+        <input type="text" name="location" value={{item[0][4]}}>
     <li>
         <label for="overview">overview:</label>
-        <input type="text" name="overview" value={{item[0][4]}}>
+        <input type="text" name="overview" value={{item[0][5]}}>
     <li>
         <label for="avg_price">Average price :$</label>
-        <input type="number" name="avg_price" value={{item[0][5]}}>
+        <input type="number" name="avg_price" value={{item[0][6]}}>
     <li>
         <label for="avg_guest">Average guest:</label>
-        <input type="number" name="avg_guest" value={{item[0][6]}}>
+        <input type="number" name="avg_guest" value={{item[0][7]}}>
     </li>
     <input type="submit">
-    <input type="hidden" id="postId" name="postId" value="{{id}}" />
+    <input type="hidden" id="postId" name="postId" value="{{item[0][0]}}" />
     </ul>
+ <p>This is venue id: {{item[0][0]}}</p>
 </form>
 
 
 <a href="/">back to home</a>
-<a href="">back </a>
+<a href="/authorizer_login">back </a>
 </div>
 {% endblock %}

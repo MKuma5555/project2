@@ -24,30 +24,30 @@
 
 <div class="main_div">
 {% for e in list %}
-<div class="category" name="{{e[1]}}">
+<div class="category" name="{{e[2]}}">
     <div class="card_image">
-        <img src='{{e[2]}}' class="img">
-        <button class="carousel_control_prev" type="button" data_base_target="#card_gallery" data_bs_slide="prev">
+        <img src='{{e[3]}}' class="img">
+
+        <button class="left" type="button" onclick="leftShift()">
             <span class="carousel_control_pre_icon" aria-hidden="true"></span>
             <span class="visually_hidden">Back◄</span>
         </button>
-        <button class="carousel_control_next" type="button" data_base_target="#card_gallery" data_bs_slide="next">
+        <button class="right" type="button" onclick="rightShift()">
             <span class="carousel_control_next_icon" aria-hidden="true"></span>
             <span class="visually_hidden">►Next</span>
         </button>
     </div>
     <div class="card_bpdy">
         <span class="card_name">
-        <h2 class="venue_name"><a href="/{{e[1]}}"> {{e[1]}}</a> </h2>
+        <h2 class="venue_name"><a href="/{{e[2]}}"> {{e[2]}}</a> </h2>
         </span>
-        <span class="card_address">📍{{e[3]}} </span>
+        <span class="card_address">📍{{e[4]}} </span>
         <span class="card_like_button">
             <!-- <button class="like" formaction="/like_clicked" aria-label="Save"> -->
                 <!-- <label><a class="login_like" href="/like_clicked">♡</a></label></button> -->
                 
                 
-<!-- pop login div box -->
-<!-- pop login div box -->
+
 <!-- pop login div box -->
 {% if not session["user_id"] %}
 <!-- <form action="/my_page" method="Post"  > -->
@@ -90,8 +90,11 @@
             
             {% else:%}
             <form action="/like" method="POST"  >
-                <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[0]}}>♡</button>
+                <!-- <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value={{e[0]}}>♡</button>
+                <input type="hidden" id="postName" name="postName" value={{table_name}} /> -->
+                <button  name="like_btn" class="like" aria-label="Save" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" value="{{e[2]}}">♡</button>
                 <input type="hidden" id="postName" name="postName" value={{table_name}} />
+
             </form>
 
             {% endif %}
@@ -99,12 +102,12 @@
         </span>
         
         <p class="card_text">
-            {{e[4]}}z
+            {{e[5]}}
         </p>
     </div>
     <div class="card_footer">
-        <p>${{e[5]}} avg price</p>
-        <p>{{e[6]}} avg ppl</p>
+        <p>${{e[6]}} avg price</p>
+        <p>{{e[7]}} avg ppl</p>
         <div class="card_enquiry"><a href="/login">Request Enquiry</a> </div>
     </div>
 </div>
@@ -126,6 +129,9 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+
 </script>
 
 {% endblock %}

@@ -21,59 +21,79 @@ def home():
     venue_cate=[]
     for r in results:
         venue_cate.append(r)
+
     return render_template('home_page.html',venue_cate=venue_cate)
 
+@app.route('/venue_list')
+def venue_list():
+    category = request.args.get('category')  # Access the value of the "category" query parameter
 
-@app.route('/Winery')
-def winery_page():
-    table_name="winery_list_table"
-    each_venue_list=short.each_list("winery_list_table")
-    category_name='Winery'
-    winery_list=[]
-    for each in each_venue_list:
-        winery_list.append(each)
-    return render_template("venue_list.html",list=winery_list,category_name=category_name,table_name=table_name)
+    results = common.sql_read("SELECT category_name FROM category_list")
+    for category_name in results:
+        for c_name in category_name:
+            if c_name == category:
+
+                each_venue_list = common.sql_read(f"SELECT * FROM category_list WHERE category_name='{c_name}'")
+
+                category_name = c_name
+                venue_list = []
+                for each in each_venue_list:
+                    venue_list.append(each)
+                return render_template("venue_list.html", list=venue_list, category_name=category_name, table_name=category)
+            
 
 
-@app.route('/City')
-def city_page():
-    table_name='city_venue_list_table'
-    each_venue_list=short.each_list("city_venue_list_table")
-    category_name='City'
-    city_list=[]
-    for each in each_venue_list:
-        city_list.append(each)
-    return render_template("venue_list.html",list=city_list,category_name=category_name,table_name=table_name)
 
-@app.route('/Waterfront')
-def waterfront_page():
-    table_name='waterfront_list_table'
-    each_venue_list=short.each_list('waterfront_list_table')
-    category_name='Waterfront'
-    waterfront_list=[]
-    for each in each_venue_list:
-        waterfront_list.append(each)
-    return render_template("venue_list.html",list=waterfront_list,category_name=category_name,table_name=table_name)
+# @app.route('/Winery')
+# def winery_page():
+#     table_name="winery_list_table"
+#     each_venue_list=short.each_list("winery_list_table")
+#     category_name='Winery'
+#     winery_list=[]
+#     for each in each_venue_list:
+#         winery_list.append(each)
+#     return render_template("venue_list.html",list=winery_list,category_name=category_name,table_name=table_name)
 
-@app.route('/Historic')
-def historic_list():
-    table_name='historic_list_table'
-    each_venue_list=short.each_list('historic_list_table')
-    category_name='Historic'
-    historic_list=[]
-    for each in each_venue_list:
-        historic_list.append(each)
-    return render_template("venue_list.html",list=historic_list,category_name=category_name,table_name=table_name)
 
-@app.route('/Unique')
-def unique_list():
-    table_name='unique_list_table'
-    each_venue_list=short.each_list('unique_list_table')
-    category_name='Unique'
-    unique_list=[]
-    for each in each_venue_list:
-        unique_list.append(each)
-    return render_template("venue_list.html",list=unique_list,category_name=category_name,table_name=table_name)
+# @app.route('/City')
+# def city_page():
+#     table_name='city_venue_list_table'
+#     each_venue_list=short.each_list("city_venue_list_table")
+#     category_name='City'
+#     city_list=[]
+#     for each in each_venue_list:
+#         city_list.append(each)
+#     return render_template("venue_list.html",list=city_list,category_name=category_name,table_name=table_name)
+
+# @app.route('/Waterfront')
+# def waterfront_page():
+#     table_name='waterfront_list_table'
+#     each_venue_list=short.each_list('waterfront_list_table')
+#     category_name='Waterfront'
+#     waterfront_list=[]
+#     for each in each_venue_list:
+#         waterfront_list.append(each)
+#     return render_template("venue_list.html",list=waterfront_list,category_name=category_name,table_name=table_name)
+
+# @app.route('/Historic')
+# def historic_list():
+#     table_name='historic_list_table'
+#     each_venue_list=short.each_list('historic_list_table')
+#     category_name='Historic'
+#     historic_list=[]
+#     for each in each_venue_list:
+#         historic_list.append(each)
+#     return render_template("venue_list.html",list=historic_list,category_name=category_name,table_name=table_name)
+
+# @app.route('/Unique')
+# def unique_list():
+#     table_name='unique_list_table'
+#     each_venue_list=short.each_list('unique_list_table')
+#     category_name='Unique'
+#     unique_list=[]
+#     for each in each_venue_list:
+#         unique_list.append(each)
+#     return render_template("venue_list.html",list=unique_list,category_name=category_name,table_name=table_name)
 
 
 @app.route('/authorizer_login')
@@ -112,7 +132,7 @@ def add_venue_list_form():
 def api_add_venue_list():
     form=request.form
     new_venue=add_edit_venue.Venue_adj(
-        table_name=request.form.get('category_name'),
+        category_name=request.form.get('category_name'),
         name=request.form.get('venue_name'),
         img_pic=request.form.get('venue_img'),
         location=request.form.get('location'),
@@ -121,47 +141,42 @@ def api_add_venue_list():
         avg_ppl=request.form.get('avg_guest'),
     )
     new_venue.add_venue_list()
-    ###Blow code is not using class ADD_venue ver#####
-    # category=request.form.get('category_name')
-    # venue_name=request.form.get('venue_name')
-    # venue_img=request.form.get('venue_img')
-    # location=request.form.get('location')
-    # overview=request.form.get('overview')
-    # avg_price=request.form.get('avg_price')
-    # avg_guest=request.form.get('avg_guest')
-
-    # # venue_list=common.sql_write(f"INSERT INTO {category}(name, img_pic,location,overview,avg_price,avg_ppl) VALUES (%s,%s,%s,%s,%s,%s)", [venue_name, venue_img,location,overview,int(avg_price),int(avg_guest) ])
-    # venue_list=short.add_venue_list([venue_name, venue_img,location,overview,int(avg_price),int(avg_guest) ])
     return redirect("/")
 
 
 @app.route('/check/venue/category')
 def check_venue_category():
-    return render_template('check_category.html')
+    results = common.sql_read("SELECT name FROM category_list")
+  
+    venue_name = [element[0] for element in results]
+    return render_template('check_category.html',show_category=venue_name)
 
 
 @app.route('/forms/edit/venue_list',methods=["POST"])
 def edit_venue_list_form():
-    table_name=request.form.get('category_name')
+    # category_name=request.form.get('category_name')
     id_input=request.form.get('id')
-    is_valid=common.sql_read(f"SELECT * FROM {table_name}")
-    if int(id_input) <= int(len(is_valid)):
-        item=common.sql_read(f"SELECT * FROM {table_name} WHERE id={id_input}")
-        return render_template("edit_venue_list.html",table_name=table_name,item=item,id=id_input)
-    else:
-        return """<h2>The id is not valid</h2><br>
-                <a href="/check/venue/category">back to select category/id</a> """
+    venue_name_select=request.form.get('venue_name')
 
-
+    # is_valid=common.sql_read(f"SELECT * FROM {table_name}")
+    # if int(id_input) <= int(len(is_valid)):
+    #     item=common.sql_read(f"SELECT * FROM {table_name} WHERE id={id_input}")
+    #     return render_template("edit_venue_list.html",table_name=table_name,item=item,id=id_input)
+    # else:
+    #     return """<h2>The id is not valid</h2><br>
+    #             <a href="/check/venue/category">back to select category/id</a> """
+    item=common.sql_read(f"SELECT * FROM category_list WHERE name='{venue_name_select}'")
+    return render_template("edit_venue_list.html",item=item,venue_name_select= venue_name_select)
 
 
 @app.route('/api/edit/venue_list',methods=["POST"])
 def api_venue_list():
-    table_name=request.form.get('postName')
+    category_name=request.form.get('postName')
     id=request.form.get('postId')
     form=request.form
-    edit_venue=add_edit_venue.Venue_adj(table_name,id)
-    edit_venue.update_venue_list(form.get('venue_name'),form.get('venue_img'),form.get('location'),form.get('overview'),form.get('avg_price'),form.get('avg_guest'),)
+    print(id,category_name)
+    edit_venue=add_edit_venue.Venue_adj(id)
+    edit_venue.update_venue_list(form.get('venue_category') ,form.get('venue_name'),form.get('venue_img'),form.get('location'),form.get('overview'),form.get('avg_price'),form.get('avg_guest'),)
     return redirect('/')
 
  #####this is code without using class venue_adj #####
@@ -188,22 +203,26 @@ def api_venue_list():
 
 @app.route('/delete/venue')
 def delete_venue():
-    return render_template('delete_choose.html')
+    results = common.sql_read("SELECT name FROM category_list")
+    venue_name = [element[0] for element in results]
+    return render_template('delete_choose.html',venue_name=venue_name)
 
 @app.route('/delete/check',methods=["POST"])
 def delete_check():
-    category_name=request.form.get('category_name')
-    id=request.form.get('id')
-    item_name=common.sql_read(f'SELECT * FROM {category_name} WHERE id={id}')
-    return render_template('delete_confirm.html',category_name=category_name,id=id,item=item_name)
+    venue_name=request.form.get('venue_name')
+    id=common.sql_read(f"SELECT id FROM category_list WHERE name='{venue_name}'")
+
+    # item_name=common.sql_read(f'SELECT * FROM {category_name} WHERE id={id}')
+    item_name=common.sql_read(f'SELECT * FROM category_list WHERE id={id[0][0]}')
+    return render_template('delete_confirm.html',category_name=venue_name,id=id[0][0],item=item_name)
 
 
 @app.route('/api/delete/venue',methods=["POST"])
 def delete_confirm():
     form=request.form
     delete_submit=add_edit_venue.Venue_adj(
-            form.get('postName'),
-            form.get("postId")[0],      
+            # form.get('postName'),
+            form.get("postId"),      
     )
     check=delete_submit.delete_venue()
 ######blow code without using class code#####
@@ -265,8 +284,8 @@ def create_user():
     results=common.sql_read("SELECT * FROM users WHERE email=%s;",[email])
     
     return  f"""
-    <p> Hi {results[0][2]}. Your email :{results[0][1]} Your password:{results[0][6]}</p><br>
-    <p>enjoy food truck<a href="/">menu</a></p>
+    <p> Hi {results[0][2]}. Your email :{results[0][1]} Your password:{password}</p><br>
+    <p>Check more<a href="/">menu</a></p>
      <p>Is this valid password? {isValidPassword}</p> """
 
 
@@ -276,40 +295,64 @@ def goto_user_page():
  
     who_is_user = common.sql_read(f'SELECT * FROM users WHERE id={session["user_id"]}')
     user_like_list = common.sql_read(f'SELECT * FROM like_table WHERE user_id={session["user_id"]}')
+    print(f'This is user_like_listP{user_like_list}')
     
-    
-    #liked_list_id=common.sql_read(f"SELECT id from like_table WHERE user_id={session['user_id']}")
-    
+   
+    ###This is before adjust code
+    # liked_venues = []
+    # for  liked in user_like_list :
+    #     table_name=liked[2]
+    #     venue_id=liked[3]
+    #     venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
+    #     venue.append(table_name)
+    #     liked_venues.append(venue)
+   
     liked_venues = []
     for  liked in user_like_list :
-        table_name=liked[2]
-        venue_id=liked[3]
-        venue = common.sql_read(f'SELECT * FROM {table_name} WHERE id={venue_id}')
-        venue.append(table_name)
+        print(liked)
+        category_name=liked[2]
+        venue_name=liked[3]
+        print(f"how come not insert?{venue_name}")
+        venue = common.sql_read(f"SELECT * FROM category_list WHERE name='{venue_name}'")
+        print(venue)
+        venue.append(category_name)
         liked_venues.append(venue)
-        # session['liked_table_id']=liked[0]
-        # print(liked[0])
-        # liked_list_id.append(liked[0])
-        # print(f"list id:{liked_list_id}")
 
-    # for  u,index in enumerate(liked_venues):
-    #     u[0].append(user_like_list[index][0])
     return render_template('user_page.html',user=who_is_user, liked_venues=liked_venues,user_like_list=user_like_list)
 
 
 
     
+# This is before adjust 
+# @app.route('/like',methods=["POST"])
+# def like_page():
+#     venue_id=request.form.get('like_btn')
+#     table_name=request.form.get('postName')
+#     session['venue_id']=venue_id
+#     session['table_name']=table_name
+    
+#     results=common.sql_write("INSERT INTO like_table ( user_id, like_table_name,like_table_venue_id) VALUES(%s,%s,%s);",[session["user_id"],session['table_name'],session['venue_id']])  
+#     return redirect('/my_page')
+   
 
 @app.route('/like',methods=["POST"])
 def like_page():
-    venue_id=request.form.get('like_btn')
-    table_name=request.form.get('postName')
-    session['venue_id']=venue_id
-    session['table_name']=table_name
+    venue_name=request.form.get('like_btn')
     
-    results=common.sql_write("INSERT INTO like_table ( user_id, like_table_name,like_table_venue_id) VALUES(%s,%s,%s);",[session["user_id"],session['table_name'],session['venue_id']])  
+    category_name=request.form.get('postName')
+  
+    session['venue_name']=venue_name
+    print(f"This is venue name:{session['venue_name']}")
+    session['category_name']=category_name
+    print(f"This is category name:{session['category_name']}")
+
+    results=common.sql_write("INSERT INTO like_table ( user_id, like_category_name,likeUnique_name) VALUES(%s,%s,%s);",[session["user_id"],session['category_name'],session['venue_name']])  
+    print(f'return like{results}')
     return redirect('/my_page')
    
+
+
+
 
 @app.route('/delete_liked',methods=["POST"])
 def delete_liked_list():

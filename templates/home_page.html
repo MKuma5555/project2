@@ -25,12 +25,11 @@
 <div class="big_div">
 {% for c in venue_cate %}
 <div class="category" name="{{c[1]}}">
-
-<!-- <form action="/each/venue/category/list<category_name>" method="POST"> -->
-   <a href="/{{c[1]}}"> <p name="category_name" value={{c[1]}} class="category_name">{{c[1]}}</p></a>
-   
+    
+  <a href="/venue_list?category={{c[1]}}" name="category_name"  > <p class="category_name">{{c[1]}}</p></a>
+    
     <img src='{{c[2]}}' class="img">
-<!-- </form>     -->
+  
 </div>
 {% endfor %}
 </div>
