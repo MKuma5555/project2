@@ -1,6 +1,6 @@
 # Melbourne wedding venue web: 
 
-This is the link for [RENDER](https://project2-fnip.onrender.com) 
+Link for my app [You can access the app via this link](https://project2-fnip.onrender.com) 
 
 The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
 
