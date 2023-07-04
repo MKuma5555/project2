@@ -60,10 +60,10 @@ VALUES
 ('Historic','Monstalvat','https://static.showit.co/1200/d7DbM8uaQui5jdgjjgIgLw/109919/montsalvat00108.jpg','Eltham','text',38000,90),
 ('Unique','Melbourne ZOO','https://www.melbournezooevents.com.au/wp-content/uploads/KMHRCOL-766-1024x683.jpg','Parkvill','TEXt.',25000,100),
 ('Unique','Sea Life Aquarium','https://www.rosaphoto.com.au/wp-content/uploads/2021/06/1kcover-wedding-photography-melbourne00034.jpg','CBD','text',50000,300),
-('Unique','State Library','https://partyspace.com/images/providers/Peabody%20Library%20wedding%20venue.jpg','CBD','text',60000,250),
+('Unique','State Library','https://images.squarespace-cdn.com/content/v1/56c2f1adb654f95147f01f84/1621905244893-TWZ54QY1H40CS1YNCI4S/MAG_1798.jpg?format=1000w','CBD','text',60000,250),
 ('Unique','Melbourne Museum ','https://cdn0.weddingwire.com/vendor/710496/3_2/960/jpg/15eb31aba5b0eb5509ea0e3e229bc1fb_51_694017-161298520566752.jpeg','Carlton','text',30000,150),
 ('Unique','Gather&Tailor','https://briarsatlas.com/wp-content/uploads/2020/07/Gather-And-Tailor-Wedding-9417.jpg','West Melbourne','TEXT',20000,200),
-('Unique','Botanical Garden','https://www.blakesfeast.com.au/wp-content/uploads/J00667-0680.jpg','Melbourne','text',50000,300),
+('Unique','Botanical Garden','https://weddingsofdistinction.com.au/wp-content/uploads/2022/04/Royal-Botanical-Gardens.jpg','Melbourne','text',50000,300),
 ('Unique','Glasshaus','https://i.weddinghero.com.au/gallery/1675/preview_1675_hIjQqzTL.jpg','Richmond','TEXT',20000,70);
 
 
