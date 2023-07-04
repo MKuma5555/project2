@@ -15,8 +15,8 @@ CREATE TABLE venue_category(
 
 INSERT INTO venue_category(name,img_pic)
 VALUES
-('Waterfront','https://www.costadeste.com/i/SITE_161213_12163014_WNF14/content/CMS_12132016_124202487_EC52W/7648B862-9116-4637-37AA4F82F3956B14.JPG'),
-('Winery','https://crowneplazahuntervalley.com.au/wp-content/uploads/2022/01/4.png'),
+('Waterfront','https://www.brides.com/thmb/8cmiHRGacHPqRj_UdUJEl9dMbsY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/89PGk2jo-1f1cd2a240c14a06954f8caca348c13c.jpeg'),
+('Winery','https://rickliston.com/wp-content/uploads/2018/02/Stones-of-the-Yarra-Valley-Wedding-Venue-0010.jpg'),
 ('City','https://www.theparkmelbourne.com.au/wp-content/uploads/2018/08/Image-4.jpg'),
 ('Historic','https://weddingvenuemap.com/wp-content/uploads/2021/10/69_the-howey-mansion6a853ba32c2c6a632013628bb7a918ef-scaled.jpeg'),
 ('Unique','https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2017/05/main/cornerstone-venue_0.jpg');

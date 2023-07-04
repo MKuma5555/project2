@@ -1,10 +1,19 @@
-# Melbourne wedding venue web 
+# Melbourne wedding venue web: 
 
 This is the link for [RENDER](https://project2-fnip.onrender.com) 
 
 The app in this repo is deployed at [https://flask.onrender.com](https://flask.onrender.com).
 
-## For project2
+# Technology used:
+
+* HTML
+* CSS
+* Jinja
+* Python
+* Postgresql
+* render
+
+## For project2:
 _______
 I created wedding venue website. The web has some category, each category has some different venue list and like button to save the "favorite list" into user page.
 
