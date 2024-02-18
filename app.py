@@ -11,7 +11,6 @@ app=Flask(__name__)
 app.config["SECRET_KEY"] = db_password
 
 
-
 @app.route('/')
 def home():
     results=short.main_short()
@@ -244,6 +243,8 @@ def delete_liked_list():
     print(f'this is id: {delete_btn}')
     bye=common.simple(f"DELETE FROM like_table WHERE  id={delete_btn}")
     return redirect('/my_page')
+
+
 
 if __name__ =="__main__":
     app.run(debug=True,port=os.getenv("PORT", default=5000))

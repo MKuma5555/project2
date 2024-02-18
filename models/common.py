@@ -1,8 +1,23 @@
 import psycopg2
 import os
+# from dotenv import load_dotenv
+
+# load_dotenv()
+# connection = psycopg2.connect(
+#     dbname=os.getenv('DBNAME'),
+#     user=os.getenv('DBUSER'),
+#     host=os.getenv('DBHOST'),
+#     password='your_database_password',  # Set the correct password here
+#     port=os.getenv('DBPORT')
+# )
+
 db_password=os.getenv('DATABASE_PASSWORD')
 
-print(dict(name=os.getenv('DBNAME'),user=os.getenv('DBUSER') ,host=os.getenv('DBHOST') ,password=db_password,port=os.getenv('DBPORT')))
+print(dict(name=os.getenv('DBNAME'),
+           user=os.getenv('DBUSER'),
+           host=os.getenv('DBHOST'),
+           password=db_password,port=os.getenv('DBPORT')
+    ))
 
 def sql_read(query,parameters=[]):
     connection=psycopg2.connect(dbname=os.getenv('DBNAME'),user=os.getenv('DBUSER') ,host=os.getenv('DBHOST') ,password=db_password,port=os.getenv('DBPORT'))

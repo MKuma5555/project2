@@ -1,7 +1,6 @@
-import psycopg2
+import psycopg2,os
 
 from models import common
-
 
 
 
